@@ -90,13 +90,36 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="小六的博客">
-<meta property="og:url" content="http://smallsix.com/index.html">
+  <meta name="description" content="接口能力前言最近做的一个人脸识别的小项目，使用到的是百度的人脸识别SDK。百度的人脸识别支持人脸检测、人脸对比以及人脸查找；人脸检测功能可以检测人脸并定位，返回五官特征点及人脸的各属性值，人脸对比功能则会对两张图片进行对比并返回相似值，人脸的查找是在自建的人脸库中找到相似的脸，这其中也包括了人脸识别，人脸认证以及人脸库的相关操作。本次项目使用的语言为python，使用的开发环境为PyCharm，系">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python百度人脸识别SDK的使用">
+<meta property="og:url" content="http://smallsix.com/2019/07/10/Python百度人脸识别SDK的使用/index.html">
 <meta property="og:site_name" content="小六的博客">
+<meta property="og:description" content="接口能力前言最近做的一个人脸识别的小项目，使用到的是百度的人脸识别SDK。百度的人脸识别支持人脸检测、人脸对比以及人脸查找；人脸检测功能可以检测人脸并定位，返回五官特征点及人脸的各属性值，人脸对比功能则会对两张图片进行对比并返回相似值，人脸的查找是在自建的人脸库中找到相似的脸，这其中也包括了人脸识别，人脸认证以及人脸库的相关操作。本次项目使用的语言为python，使用的开发环境为PyCharm，系">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://smallsix.com/2019/07/10/Python百度人脸识别SDK的使用/images/py%E4%B8%8B%E8%BD%BD1.png">
+<meta property="og:image" content="http://smallsix.com/2019/07/10/Python百度人脸识别SDK的使用/images/py%E4%B8%8B%E8%BD%BD2.png">
+<meta property="og:image" content="http://smallsix.com/2019/07/10/Python百度人脸识别SDK的使用/images/py%E5%AE%89%E8%A3%851.png">
+<meta property="og:image" content="http://smallsix.com/2019/07/10/Python百度人脸识别SDK的使用/images/pipversion.png">
+<meta property="og:image" content="http://smallsix.com/2019/07/10/Python百度人脸识别SDK的使用/images/pip%E6%9C%AA%E5%AE%89%E8%A3%85.png">
+<meta property="og:image" content="http://smallsix.com/2019/07/10/Python百度人脸识别SDK的使用/images/pipdownload.png">
+<meta property="og:image" content="http://smallsix.com/2019/07/10/Python百度人脸识别SDK的使用/images/pip%E5%AE%89%E8%A3%851.png">
+<meta property="og:image" content="http://smallsix.com/2019/07/10/Python百度人脸识别SDK的使用/images/pip%E5%AE%89%E8%A3%852.png">
+<meta property="og:image" content="http://smallsix.com/2019/07/10/Python百度人脸识别SDK的使用/images/pipuninstall.png">
+<meta property="og:image" content="http://smallsix.com/2019/07/10/Python百度人脸识别SDK的使用/images/baiduaip%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F.png">
+<meta property="og:image" content="http://smallsix.com/2019/07/10/Python百度人脸识别SDK的使用/images/%E5%BA%94%E7%94%A8%E7%94%B3%E8%AF%B7.png">
+<meta property="og:image" content="http://smallsix.com/2019/07/10/Python百度人脸识别SDK的使用/images/%E5%BA%94%E7%94%A8%E7%94%B3%E8%AF%B72.png">
+<meta property="og:image" content="http://smallsix.com/2019/07/10/Python百度人脸识别SDK的使用/images/%E5%BA%94%E7%94%A8%E7%94%B3%E8%AF%B73.png">
+<meta property="og:image" content="http://smallsix.com/2019/07/10/Python百度人脸识别SDK的使用/images/%E6%B5%8B%E8%AF%95%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB.png">
+<meta property="og:image" content="http://smallsix.com/2019/07/10/Python百度人脸识别SDK的使用/images/Client.png">
+<meta property="og:image" content="http://smallsix.com/2019/07/10/Python百度人脸识别SDK的使用/images/detect.png">
+<meta property="og:image" content="http://smallsix.com/2019/07/10/Python百度人脸识别SDK的使用/images/dict.png">
+<meta property="og:image" content="http://smallsix.com/2019/07/10/Python百度人脸识别SDK的使用/images/%E8%8E%B7%E5%8F%96userid.png">
+<meta property="og:updated_time" content="2019-07-11T06:53:50.480Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="小六的博客">
+<meta name="twitter:title" content="Python百度人脸识别SDK的使用">
+<meta name="twitter:description" content="接口能力前言最近做的一个人脸识别的小项目，使用到的是百度的人脸识别SDK。百度的人脸识别支持人脸检测、人脸对比以及人脸查找；人脸检测功能可以检测人脸并定位，返回五官特征点及人脸的各属性值，人脸对比功能则会对两张图片进行对比并返回相似值，人脸的查找是在自建的人脸库中找到相似的脸，这其中也包括了人脸识别，人脸认证以及人脸库的相关操作。本次项目使用的语言为python，使用的开发环境为PyCharm，系">
+<meta name="twitter:image" content="http://smallsix.com/2019/07/10/Python百度人脸识别SDK的使用/images/py%E4%B8%8B%E8%BD%BD1.png">
 
 
 
@@ -104,7 +127,7 @@
 
   
   
-  <link rel="canonical" href="http://smallsix.com/">
+  <link rel="canonical" href="http://smallsix.com/2019/07/10/Python百度人脸识别SDK的使用/">
 
 
 
@@ -114,7 +137,7 @@
   };
 </script>
 
-  <title>小六的博客</title>
+  <title>Python百度人脸识别SDK的使用 | 小六的博客</title>
   
 
 
@@ -162,8 +185,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -205,7 +227,7 @@
         
         
           
-          <li class="menu-item menu-item-home menu-item-active">
+          <li class="menu-item menu-item-home">
 
     
     
@@ -297,9 +319,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -331,10 +353,8 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/10/Python百度人脸识别SDK的使用/" class="post-title-link" itemprop="url">Python百度人脸识别SDK的使用</a>
+          <h1 class="post-title" itemprop="name headline">Python百度人脸识别SDK的使用
+
               
             
           </h1>
@@ -402,6 +422,14 @@
           
 
           
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+                 阅读次数： 
+                <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+              </span>
+            </span>
+          
 
           <br>
           
@@ -423,9 +451,7 @@
       
 
       
-        
-          
-            <h1 id="接口能力"><a href="#接口能力" class="headerlink" title="接口能力"></a>接口能力</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近做的一个人脸识别的小项目，使用到的是百度的人脸识别SDK。百度的人脸识别支持人脸检测、人脸对比以及人脸查找；人脸检测功能可以检测人脸并定位，返回五官特征点及人脸的各属性值，人脸对比功能则会对两张图片进行对比并返回相似值，人脸的查找是在自建的人脸库中找到相似的脸，这其中也包括了人脸识别，人脸认证以及人脸库的相关操作。<br><strong>本次项目使用的语言为python，使用的开发环境为PyCharm，系统为Windows10。</strong><br>笔者暂时把自己的博客当作是是踩坑的记录。文章中如有错误及不当，敬请指正。</p>
+        <h1 id="接口能力"><a href="#接口能力" class="headerlink" title="接口能力"></a>接口能力</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近做的一个人脸识别的小项目，使用到的是百度的人脸识别SDK。百度的人脸识别支持人脸检测、人脸对比以及人脸查找；人脸检测功能可以检测人脸并定位，返回五官特征点及人脸的各属性值，人脸对比功能则会对两张图片进行对比并返回相似值，人脸的查找是在自建的人脸库中找到相似的脸，这其中也包括了人脸识别，人脸认证以及人脸库的相关操作。<br><strong>本次项目使用的语言为python，使用的开发环境为PyCharm，系统为Windows10。</strong><br>笔者暂时把自己的博客当作是是踩坑的记录。文章中如有错误及不当，敬请指正。</p>
 <h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><ul>
 <li><p>pthon 3.7 安装</p>
 <ol>
@@ -524,8 +550,6 @@
 <h2 id="Endding"><a href="#Endding" class="headerlink" title="Endding"></a>Endding</h2><p>我知道我现在还很菜的，我不知道以后自己会不会是个很厉害的程序猿，我只希望自己能够慢慢的努力，挣扎，不放弃。</p>
 <p>记很喜欢的一句话：<br><strong>螃蟹在剥我的壳<br>笔记本在写我<br>漫天的我落在了枫叶上雪花上，<br>而你，在想我</strong></p>
 
-          
-        
       
     </div>
 
@@ -548,192 +572,28 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://smallsix.com/2019/07/02/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="小六">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/face.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小六的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/02/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-              
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-02 20:52:05" itemprop="dateCreated datePublished" datetime="2019-07-02T20:52:05+08:00">2019-07-02</time>
-            </span>
-          
-
-          
+              <a href="/2019/07/02/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-07-08 15:18:07" itemprop="dateModified" datetime="2019-07-08T15:18:07+08:00">2019-07-08</time>
-              </span>
-            
-          
-
-          
-
-          
-            
-            
-              
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/07/02/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/07/02/hello-world/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          <br>
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -743,14 +603,19 @@
   </article>
 
 
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
 
         </div>
         
@@ -770,8 +635,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -844,6 +718,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#接口能力"><span class="nav-number">1.</span> <span class="nav-text">接口能力</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前期准备"><span class="nav-number">1.2.</span> <span class="nav-text">前期准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#功能调用"><span class="nav-number">1.3.</span> <span class="nav-text">功能调用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Client客户端"><span class="nav-number">1.3.1.</span> <span class="nav-text">Client客户端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#人脸检测"><span class="nav-number">1.3.2.</span> <span class="nav-text">人脸检测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#人脸搜索"><span class="nav-number">1.3.3.</span> <span class="nav-text">人脸搜索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#人脸对比"><span class="nav-number">1.3.4.</span> <span class="nav-text">人脸对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#人脸库操作"><span class="nav-number">1.3.5.</span> <span class="nav-text">人脸库操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#返回信息的处理"><span class="nav-number">1.4.</span> <span class="nav-text">返回信息的处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图片上传格式"><span class="nav-number">1.5.</span> <span class="nav-text">图片上传格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Endding"><span class="nav-number">1.6.</span> <span class="nav-text">Endding</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -998,6 +889,10 @@
 
 
   
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
 
   
 
@@ -1039,6 +934,8 @@
 
 
 
+
+  
 
 
   
