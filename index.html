@@ -393,106 +393,19 @@
       
         
           
-            <h1 id="接口能力"><a href="#接口能力" class="headerlink" title="接口能力"></a>接口能力</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近做的一个人脸识别的小项目，使用到的是百度的人脸识别SDK。百度的人脸识别支持人脸检测、人脸对比以及人脸查找；人脸检测功能可以检测人脸并定位，返回五官特征点及人脸的各属性值，人脸对比功能则会对两张图片进行对比并返回相似值，人脸的查找是在自建的人脸库中找到相似的脸，这其中也包括了人脸识别，人脸认证以及人脸库的相关操作。<br><strong>本次项目使用的语言为python，使用的开发环境为PyCharm，系统为Windows10。</strong><br>笔者暂时把自己的博客当作是是踩坑的记录。文章中如有错误及不当，敬请指正。</p>
-<h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><ul>
-<li><p>pthon 3.7 安装</p>
-<ol>
-<li><p>下载安装包<br>登录<a href="https://www.python.org/" target="_blank" rel="noopener">python</a>官网下载对应的安装包，小六的电脑为Windows 10，所以下载的安装文件为Windows 系统，64位版本；</p>
-<p><img src="./images/py%E4%B8%8B%E8%BD%BD1.png" alt="安装文件下载1"><br><img src="./images/py%E4%B8%8B%E8%BD%BD2.png" alt="安装文件下载2"></p>
-</li>
-<li><p>安装</p>
-<p>建议勾选Add Python to PATH，然后点击Install Now，其他默认即可；</p>
-<p><img src="./images/py%E5%AE%89%E8%A3%851.png" alt="python安装"></p>
-<ul>
-<li>pip安装</li>
-</ul>
-<p>pip 是一个现代的，通用的 Python 包管理工具。提供了对 Python 包的查找、下载、安装、卸载的功能。（百度百科这么说的）</p>
-<ol>
-<li>检查电脑中是否已经安装pip。<br>打开cmd命令行，输入<code>pip --version</code>,如果电脑中已经安装好了pip，那么会得到这样的返回。<br><img src="./images/pipversion.png" alt="pip --version"></li>
-<li>如果没有安装，那么会显示：</li>
-</ol>
-<p><img src="./images/pip%E6%9C%AA%E5%AE%89%E8%A3%85.png" alt="pip未安装"><br>这种情况的话去<a href="https://pypi.org/project/pip/#files" target="_blank" rel="noopener">pip下载地址</a>下载第二个压缩包文件，</p>
-<p><img src="./images/pipdownload.png" alt="pip下载"><br>之后将压缩包解压，在命令行中进入压缩包解压后的文件夹，输入<code>python setup.py install</code>进行安装。</p>
-<p><img src="./images/pip%E5%AE%89%E8%A3%851.png" alt="pip安装命令"><br>正常的话会显示：</p>
-<p><img src="./images/pip%E5%AE%89%E8%A3%852.png" alt="pip安装成功"><br>再输入<code>pip --version</code>进行测试，当显示pip的版本信息即可。</p>
-</li>
-<li><p>卸载pip（如果有需要的话，没错，就是我，大半夜强行卸载重装的我。）<br>命令行执行<code>python -m pip uninstall pip</code>,然后输入<code>y</code>确认卸载。<br><img src="./images/pipuninstall.png" alt="pip uninstall"></p>
-<ul>
-<li>百度人脸识别sdk安装<br>命令行输入<code>pip install baidu-aip</code>进行安装，当显示Successfully installed baidu-aip…即表示sdk安装成功。<br><img src="./images/baiduaip%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F.png" alt="enter description here"></li>
-<li>百度ai平台账号注册及应用申请<br>百度ai平台的官网地址为<a href="http://ai.baidu.com/" target="_blank" rel="noopener">http://ai.baidu.com/</a>百度的账号的申请就不用说了，申请好了账号电机右上角控制台，然后点击左边的人脸识别，点击创建应用。<br><img src="./images/%E5%BA%94%E7%94%A8%E7%94%B3%E8%AF%B7.png" alt="应用申请"><br>填写应用名称，选择应用类型，填写应用描述，最后点击创建应用即可。<br><img src="./images/%E5%BA%94%E7%94%A8%E7%94%B3%E8%AF%B72.png" alt="创建应用"><br><img src="./images/%E5%BA%94%E7%94%A8%E7%94%B3%E8%AF%B73.png" alt="创建应用"><br>之后就会得到下面的应用，其中AppID，APIKey和Secret Key在后面的功能调用中会用到。<br><img src="./images/%E6%B5%8B%E8%AF%95%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB.png" alt="应用列别哦"></li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-<h2 id="功能调用"><a href="#功能调用" class="headerlink" title="功能调用"></a>功能调用</h2><h3 id="Client客户端"><a href="#Client客户端" class="headerlink" title="Client客户端"></a>Client客户端</h3><p> AipFace是人脸识别的Python SDK客户端，为使用人脸识别的开发人员提供了一系列的交互方法。<br> 打开PyCharm，新建工程，在src目录下建立一个AipFac目录，作为本次人脸识别小项目各个子功能程序的存放地址。<br> 新建<code>Client.py</code>，使用示例代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> aip <span class="keyword">import</span> AipFace</span><br><span class="line"></span><br><span class="line"><span class="string">""" 你的 APPID AK SK """</span></span><br><span class="line">APP_ID = <span class="string">'16528434'</span></span><br><span class="line">API_KEY = <span class="string">'Rat9t59Hdkp8lM1BhvahOGCX'</span></span><br><span class="line">SECRET_KEY = <span class="string">'你的secret——key'</span></span><br><span class="line"></span><br><span class="line">client = AipFace(APP_ID, API_KEY, SECRET_KEY)</span><br></pre></td></tr></table></figure>
-
-<p>该程序只是一个人脸识别的python SDK客户端，作为后续功能实现的平台。程序运行结果如下：<br><img src="./images/Client.png" alt="CLient运行"></p>
-<h3 id="人脸检测"><a href="#人脸检测" class="headerlink" title="人脸检测"></a>人脸检测</h3><p> 人脸检测接口检测图片中的人脸并标记出位置信息;<br>新建<code>face_Detect.py</code>，示例代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">from</span> src.Aipface <span class="keyword">import</span> client</span><br><span class="line"></span><br><span class="line">base64_data=base64.b64encode(open(<span class="string">"..\\photo\\1.jpg"</span>, <span class="string">"rb"</span>).read())</span><br><span class="line">image = base64_data.decode()</span><br><span class="line"></span><br><span class="line">imageType = <span class="string">"BASE64"</span></span><br><span class="line">options = &#123;&#125;</span><br><span class="line">options[<span class="string">"face_field"</span>] = <span class="string">"age,beauty,experssion,gender,glasses,race,quality,eye_status,emotion"</span></span><br><span class="line">options[<span class="string">"max_face_num"</span>] = <span class="number">2</span></span><br><span class="line">options[<span class="string">"face_type"</span>] = <span class="string">"LIVE"</span></span><br><span class="line">options[<span class="string">"liveness_control"</span>] = <span class="string">"LOW"</span></span><br><span class="line">client.detect(image, imageType,options)</span><br></pre></td></tr></table></figure>
-
-<p>本程序中使用的图片在上级目录中的photo文件夹中，图片名称为1.jpg，程序执行后并不会直接显示有效信息，因为<code>client.detect(image, imageType,options)</code>只是一个返回信息的函数，想要显示信息，可以将程序的最后改为：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s=client.detect(image, imageType,options)</span><br><span class="line">print(s)</span><br></pre></td></tr></table></figure>
-
-<p>此时程序运行在控制台输出数据：<br><img src="./images/detect.png" alt="face_Detect"><br>        数据的格式及处理会在后面详细说明。</p>
-<h3 id="人脸搜索"><a href="#人脸搜索" class="headerlink" title="人脸搜索"></a>人脸搜索</h3><p>接口能力</p>
-<ul>
-<li>1：N人脸搜索：也称为1：N识别，在指定人脸集合中，找到最相似的人脸；</li>
-<li>N人脸认证：基于uid维度的1：N识别，由于uid已经锁定固定数量的人脸，所以检索范围更聚焦；</li>
-</ul>
-<p>这里演示使用1：N搜索，新建<code>face_Search.py</code>，实例代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> src.Aipface <span class="keyword">import</span> client</span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"..\\photo\\1.jpg"</span>, <span class="string">"rb"</span>) <span class="keyword">as</span> f:</span><br><span class="line">    base64_data = base64.b64encode(f.read())</span><br><span class="line">    s = base64_data.decode()</span><br><span class="line"></span><br><span class="line">image = s</span><br><span class="line">imageType = <span class="string">"BASE64"</span></span><br><span class="line">groupIdList = <span class="string">"Groop1"</span></span><br><span class="line"></span><br><span class="line"><span class="string">""" 调用人脸搜索 """</span></span><br><span class="line">s=client.search(image, imageType, groupIdList)</span><br><span class="line">print(s)</span><br></pre></td></tr></table></figure>
-
-<p>代码中使用的照片为上一级目录里photo文件夹中的1.jpg，在<code>Groop1</code>这个人脸库用户组中进行查找,数据的返回数据暂时打印到控制台。</p>
-<h3 id="人脸对比"><a href="#人脸对比" class="headerlink" title="人脸对比"></a>人脸对比</h3><p>接口能力</p>
-<ul>
-<li>两张人脸图片相似度对比：比对两张图片中人脸的相似度，并返回相似度分值；</li>
-<li>多种图片类型：支持生活照、证件照、身份证芯片照、带网纹照四种类型的人脸对比；</li>
-<li>活体检测：基于图片中的破绽分析，判断其中的人脸是否为二次翻拍（举例：如用户A用手机拍摄了一张包含人脸的图片一，用户B翻拍了图片一得到了图片二，并用图片二伪造成用户A去进行识别操作，这种情况普遍发生在金融开户、实名认证等环节。）；</li>
-<li>质量检测：返回模糊、光照等质量检测信息，用于辅助判断图片是否符合识别要求；</li>
-</ul>
-<p>这里演示两张人脸图片的相似度对比，新建<code>face_Match.py</code>,示例代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> src.Aipface <span class="keyword">import</span> client</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">APP_ID = <span class="string">'16528434'</span></span><br><span class="line">API_KEY = <span class="string">'Rat9t59Hdkp8lM1BhvahOGCX'</span></span><br><span class="line">SECRET_KEY = <span class="string">'iQ7fryNaPv7eWKluXrlQ6zKBtpj8h0vi'</span></span><br><span class="line">base64_data=base64.b64encode(open(<span class="string">"..\\photo\\1.jpg"</span>, <span class="string">"rb"</span>).read())</span><br><span class="line">image1 = base64_data.decode()</span><br><span class="line">base64_data=base64.b64encode(open(<span class="string">"..\\photo\\2.jpg"</span>, <span class="string">"rb"</span>).read())</span><br><span class="line">image2 = base64_data.decode()</span><br><span class="line">result = client.match([</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">'image'</span>: image1,</span><br><span class="line">        <span class="string">'image_type'</span>: <span class="string">'BASE64'</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">'image'</span>: image2,</span><br><span class="line">        <span class="string">'image_type'</span>: <span class="string">'BASE64'</span>,</span><br><span class="line">    &#125;</span><br><span class="line">])</span><br><span class="line">print(result)</span><br></pre></td></tr></table></figure>
-
-<p>代码中使用的照片为上一级目录里photo文件夹中的1.jpg和2.jpg，两张图片里的人脸进行相似度打分,数据的返回数据暂时打印到控制台。</p>
-<h3 id="人脸库操作"><a href="#人脸库操作" class="headerlink" title="人脸库操作"></a>人脸库操作</h3><p>接口能力</p>
-<ul>
-<li>人脸的注册，更新，删除；</li>
-<li>用户列表，用户信息，人脸列表等信息的查询；</li>
-<li>创建，删除，复制人脸及用户组；</li>
-</ul>
-<p>这里演示人脸的注册，新建<code>face_Add.py</code>，示例代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">from</span> src.Aipface <span class="keyword">import</span> client</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"..\\photo\\2.jpg"</span>, <span class="string">"rb"</span>) <span class="keyword">as</span> f:</span><br><span class="line">    base64_data = base64.b64encode(f.read())</span><br><span class="line">    s = base64_data.decode()</span><br><span class="line">image = s</span><br><span class="line">imageType = <span class="string">"BASE64"</span></span><br><span class="line">groupId = <span class="string">"group1"</span></span><br><span class="line">userId = <span class="string">"qiuTao"</span></span><br><span class="line"></span><br><span class="line"><span class="string">""" 如果有可选参数 """</span></span><br><span class="line">options = &#123;&#125;</span><br><span class="line">options[<span class="string">"user_info"</span>] = <span class="string">"MySelf"</span></span><br><span class="line">options[<span class="string">"quality_control"</span>] = <span class="string">"NORMAL"</span></span><br><span class="line">options[<span class="string">"liveness_control"</span>] = <span class="string">"LOW"</span></span><br><span class="line">options[<span class="string">"action_type"</span>] = <span class="string">"REPLACE"</span></span><br><span class="line">print(client.addUser(image, imageType, groupId, userId, options))</span><br></pre></td></tr></table></figure>
-
-<p>代码中使用的照片为上一级目录里photo文件夹中的2.jpg，将人脸注册到group1用户组内，并命名该用户的id为qiuTao,注册的结果暂时打印到控制台。</p>
-<h2 id="返回信息的处理"><a href="#返回信息的处理" class="headerlink" title="返回信息的处理"></a>返回信息的处理</h2><p>人脸识别相关功能的程序执行返回的数据是json格式。<br>以人脸的搜索为例，上述人脸搜索的返回值为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &apos;error_code&apos;: 0,</span><br><span class="line">    &apos;error_msg&apos;: &apos;SUCCESS&apos;,</span><br><span class="line">    &apos;log_id&apos;: 1345050726507356651,</span><br><span class="line">    &apos;timestamp&apos;: 1562650735,</span><br><span class="line">    &apos;cached&apos;: 0,</span><br><span class="line">    &apos;result&apos;: &#123;</span><br><span class="line">        &apos;face_token&apos;: &apos;a12c44c7c8463f2611ce82dbd7795811&apos;,</span><br><span class="line">        &apos;user_list&apos;: [</span><br><span class="line">            &#123;</span><br><span class="line">                &apos;group_id&apos;: &apos;Groop1&apos;,</span><br><span class="line">                &apos;user_id&apos;: &apos;qiuTao&apos;,</span><br><span class="line">                &apos;user_info&apos;: &apos;&apos;,</span><br><span class="line">                &apos;score&apos;: 99.62272644043</span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>从上面我们可以看出，<code>error_code</code>为错误代码，当它不为0的时候，<code>error_msg</code>为显示一些对应错误的提示，就表示程序或多或少出现了某些问题导致请求错误，这时候需要去对应错误代码的<a href="https://ai.baidu.com/docs#/Face-Python-SDK/a50e53cf" target="_blank" rel="noopener">官方解释</a>来进行一定的调试；<br><code>error_msg</code>为错误信息，当<code>error_code</code>为0时，<code>error_msg</code>的值为<code>SUCCESS</code>；<br><code>result</code>又是一个字典，里面包含了比较重要的信息。<br><code>face_token</code>是人脸标志；<br><code>user_list</code>在人脸库中搜索到的人脸列表；<br><code>group_id</code>为搜索到的人脸所在的用户组；<br><code>user_id</code>为搜索到的人脸对应的用户id；<br><code>user_info</code>为搜索到的用户的相关信息（在人脸注册或更新时候添加的信息）；<br><code>score</code>为搜索到的人脸库中的图片和程序中的图片的相似度得分。<br>要想从这样的数据中获取对自己信息，可以先使用<code>type()</code>来得到返回值的类型：<br><img src="./images/dict.png" alt="type"><br>，然后针对python中字典的描述，最笨最直接的一种方法可以使用索引的方法来得到信息。<br>比如这里我们想得到人脸搜索的<code>user_id</code>,可以使用下面的方法：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(s[<span class="string">'result'</span>][<span class="string">'user_list'</span>][<span class="number">0</span>][<span class="string">"user_id"</span>])</span><br></pre></td></tr></table></figure>
-
-<p>我知道，可能没有比这更笨的方法了，等我看完python的基础视频会再回来修正的。<br>程序执行的结果为：<br><img src="./images/%E8%8E%B7%E5%8F%96userid.png" alt="获取user_id"><br>这里得到了<code>user_id</code>具体的值，可以在后续的程序中调用。</p>
-<h2 id="图片上传格式"><a href="#图片上传格式" class="headerlink" title="图片上传格式"></a>图片上传格式</h2><p>百度ai人脸识别支持的图片上传的格式有三种，分别是<code>BASE64</code>,    <code>URL</code>和<code>FACE_TOKEN</code>：</p>
-<ul>
-<li>BASE64:图片的base64值，base64编码后的图片数据，编码后的图片大小不超过2M；</li>
-<li>URL:图片的 URL地址( 可能由于网络等原因导致下载图片时间过长)；</li>
-<li>FACE_TOKEN: 人脸图片的唯一标识，调用人脸检测接口时，会为每个人脸图片赋予一个唯一的FACE_TOKEN，同一张图片多次检测得到的FACE_TOKEN是同一个;</li>
-</ul>
-<p><code>URL</code>格式上传的是一整张图片，显而易见的一个缺点就是上传的数据量会比较大，而<code>FACE_TOKEN</code>的方式针对的是已经被百度人脸识别的后台处理过后的人脸标识，本项目中不合适。<br>本次小项目使用的图片上传格式为<code>BASE64</code>。<br><code>BASE64</code>就是一种编码方式，使用64个可打印字符来表示二进制数据。<br>要将图片转换成<code>BASE64</code>格式，首先要加载python内置的base64：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br></pre></td></tr></table></figure>
-
-<p>然后对图片进行处理：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> open(<span class="string">"／home/chaowei/1.png"</span>,<span class="string">"rb"</span>) <span class="keyword">as</span> f:  </span><br><span class="line">base64_data = base64.b64encode(f.read())</span><br></pre></td></tr></table></figure>
-
-<p>其中，<code>b64encode</code>是编码，<code>b64decode</code>是解码  ;<br>所以本项目中图片转换的示例代码为：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">base64_data=base64.b64encode(open(<span class="string">"..\\photo\\1.jpg"</span>, <span class="string">"rb"</span>).read())</span><br><span class="line">image = base64_data.decode()</span><br><span class="line">imageType = <span class="string">"BASE64"</span></span><br></pre></td></tr></table></figure>
-
-<p><code>imageType</code>为图片的格式，这里格式为<code>BASE64</code>。</p>
-<h2 id="Endding"><a href="#Endding" class="headerlink" title="Endding"></a>Endding</h2><p>我知道我现在还很菜的，我不知道以后自己会不会是个很厉害的程序猿，我只希望自己能够慢慢的努力，挣扎，不放弃。</p>
-<p>记很喜欢的一句话：<br><strong>螃蟹在剥我的壳<br>笔记本在写我<br>漫天的我落在了枫叶上雪花上，<br>而你，在想我</strong></p>
-
+            <p>
+              接口能力前言最近做的一个人脸识别的小项目，使用到的是百度的人脸识别SDK。百度的人脸识别支持人脸检测、人脸对比以及人脸查找；人脸检测功能可以检测人脸并定位，返回五官特征点及人脸的各属性值，人脸对比功能则会对两张图片进行对比并返回相似值，人脸的查找是在自建的人脸库中找到相似的脸，这其中也包括了人脸识别
+              ...
+            </p>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/07/10/Python百度人脸识别SDK的使用/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -658,21 +571,19 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+            <p>
+              Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in 
+              ...
+            </p>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/07/02/hello-world/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
