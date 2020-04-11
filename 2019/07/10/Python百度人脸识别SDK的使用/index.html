@@ -94,33 +94,33 @@
 <meta name="keywords" content="python, 人脸识别">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python百度人脸识别SDK的使用">
-<meta property="og:url" content="http://smallsix.com/2019/07/10/Python百度人脸识别SDK的使用/index.html">
+<meta property="og:url" content="https://codesix.site/2019/07/10/Python百度人脸识别SDK的使用/index.html">
 <meta property="og:site_name" content="小六的博客">
 <meta property="og:description" content="接口能力前言最近做的一个人脸识别的小项目，使用到的是百度的人脸识别SDK。百度的人脸识别支持人脸检测、人脸对比以及人脸查找；人脸检测功能可以检测人脸并定位，返回五官特征点及人脸的各属性值，人脸对比功能则会对两张图片进行对比并返回相似值，人脸的查找是在自建的人脸库中找到相似的脸，这其中也包括了人脸识别，人脸认证以及人脸库的相关操作。本次项目使用的语言为python，使用的开发环境为PyCharm，系">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://smallsix.com/2019/07/10/Python百度人脸识别SDK的使用/images/py%E4%B8%8B%E8%BD%BD1.png">
-<meta property="og:image" content="http://smallsix.com/2019/07/10/Python百度人脸识别SDK的使用/images/py%E4%B8%8B%E8%BD%BD2.png">
-<meta property="og:image" content="http://smallsix.com/2019/07/10/Python百度人脸识别SDK的使用/images/py%E5%AE%89%E8%A3%851.png">
-<meta property="og:image" content="http://smallsix.com/2019/07/10/Python百度人脸识别SDK的使用/images/pipversion.png">
-<meta property="og:image" content="http://smallsix.com/2019/07/10/Python百度人脸识别SDK的使用/images/pip%E6%9C%AA%E5%AE%89%E8%A3%85.png">
-<meta property="og:image" content="http://smallsix.com/2019/07/10/Python百度人脸识别SDK的使用/images/pipdownload.png">
-<meta property="og:image" content="http://smallsix.com/2019/07/10/Python百度人脸识别SDK的使用/images/pip%E5%AE%89%E8%A3%851.png">
-<meta property="og:image" content="http://smallsix.com/2019/07/10/Python百度人脸识别SDK的使用/images/pip%E5%AE%89%E8%A3%852.png">
-<meta property="og:image" content="http://smallsix.com/2019/07/10/Python百度人脸识别SDK的使用/images/pipuninstall.png">
-<meta property="og:image" content="http://smallsix.com/2019/07/10/Python百度人脸识别SDK的使用/images/baiduaip%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F.png">
-<meta property="og:image" content="http://smallsix.com/2019/07/10/Python百度人脸识别SDK的使用/images/%E5%BA%94%E7%94%A8%E7%94%B3%E8%AF%B7.png">
-<meta property="og:image" content="http://smallsix.com/2019/07/10/Python百度人脸识别SDK的使用/images/%E5%BA%94%E7%94%A8%E7%94%B3%E8%AF%B72.png">
-<meta property="og:image" content="http://smallsix.com/2019/07/10/Python百度人脸识别SDK的使用/images/%E5%BA%94%E7%94%A8%E7%94%B3%E8%AF%B73.png">
-<meta property="og:image" content="http://smallsix.com/2019/07/10/Python百度人脸识别SDK的使用/images/%E6%B5%8B%E8%AF%95%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB.png">
-<meta property="og:image" content="http://smallsix.com/2019/07/10/Python百度人脸识别SDK的使用/images/Client.png">
-<meta property="og:image" content="http://smallsix.com/2019/07/10/Python百度人脸识别SDK的使用/images/detect.png">
-<meta property="og:image" content="http://smallsix.com/2019/07/10/Python百度人脸识别SDK的使用/images/dict.png">
-<meta property="og:image" content="http://smallsix.com/2019/07/10/Python百度人脸识别SDK的使用/images/%E8%8E%B7%E5%8F%96userid.png">
+<meta property="og:image" content="https://codesix.site/2019/07/10/Python百度人脸识别SDK的使用/images/py%E4%B8%8B%E8%BD%BD1.png">
+<meta property="og:image" content="https://codesix.site/2019/07/10/Python百度人脸识别SDK的使用/images/py%E4%B8%8B%E8%BD%BD2.png">
+<meta property="og:image" content="https://codesix.site/2019/07/10/Python百度人脸识别SDK的使用/images/py%E5%AE%89%E8%A3%851.png">
+<meta property="og:image" content="https://codesix.site/2019/07/10/Python百度人脸识别SDK的使用/images/pipversion.png">
+<meta property="og:image" content="https://codesix.site/2019/07/10/Python百度人脸识别SDK的使用/images/pip%E6%9C%AA%E5%AE%89%E8%A3%85.png">
+<meta property="og:image" content="https://codesix.site/2019/07/10/Python百度人脸识别SDK的使用/images/pipdownload.png">
+<meta property="og:image" content="https://codesix.site/2019/07/10/Python百度人脸识别SDK的使用/images/pip%E5%AE%89%E8%A3%851.png">
+<meta property="og:image" content="https://codesix.site/2019/07/10/Python百度人脸识别SDK的使用/images/pip%E5%AE%89%E8%A3%852.png">
+<meta property="og:image" content="https://codesix.site/2019/07/10/Python百度人脸识别SDK的使用/images/pipuninstall.png">
+<meta property="og:image" content="https://codesix.site/2019/07/10/Python百度人脸识别SDK的使用/images/baiduaip%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F.png">
+<meta property="og:image" content="https://codesix.site/2019/07/10/Python百度人脸识别SDK的使用/images/%E5%BA%94%E7%94%A8%E7%94%B3%E8%AF%B7.png">
+<meta property="og:image" content="https://codesix.site/2019/07/10/Python百度人脸识别SDK的使用/images/%E5%BA%94%E7%94%A8%E7%94%B3%E8%AF%B72.png">
+<meta property="og:image" content="https://codesix.site/2019/07/10/Python百度人脸识别SDK的使用/images/%E5%BA%94%E7%94%A8%E7%94%B3%E8%AF%B73.png">
+<meta property="og:image" content="https://codesix.site/2019/07/10/Python百度人脸识别SDK的使用/images/%E6%B5%8B%E8%AF%95%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB.png">
+<meta property="og:image" content="https://codesix.site/2019/07/10/Python百度人脸识别SDK的使用/images/Client.png">
+<meta property="og:image" content="https://codesix.site/2019/07/10/Python百度人脸识别SDK的使用/images/detect.png">
+<meta property="og:image" content="https://codesix.site/2019/07/10/Python百度人脸识别SDK的使用/images/dict.png">
+<meta property="og:image" content="https://codesix.site/2019/07/10/Python百度人脸识别SDK的使用/images/%E8%8E%B7%E5%8F%96userid.png">
 <meta property="og:updated_time" content="2020-04-04T05:52:33.947Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python百度人脸识别SDK的使用">
 <meta name="twitter:description" content="接口能力前言最近做的一个人脸识别的小项目，使用到的是百度的人脸识别SDK。百度的人脸识别支持人脸检测、人脸对比以及人脸查找；人脸检测功能可以检测人脸并定位，返回五官特征点及人脸的各属性值，人脸对比功能则会对两张图片进行对比并返回相似值，人脸的查找是在自建的人脸库中找到相似的脸，这其中也包括了人脸识别，人脸认证以及人脸库的相关操作。本次项目使用的语言为python，使用的开发环境为PyCharm，系">
-<meta name="twitter:image" content="http://smallsix.com/2019/07/10/Python百度人脸识别SDK的使用/images/py%E4%B8%8B%E8%BD%BD1.png">
+<meta name="twitter:image" content="https://codesix.site/2019/07/10/Python百度人脸识别SDK的使用/images/py%E4%B8%8B%E8%BD%BD1.png">
 
 
 
@@ -128,7 +128,7 @@
 
   
   
-  <link rel="canonical" href="http://smallsix.com/2019/07/10/Python百度人脸识别SDK的使用/">
+  <link rel="canonical" href="https://codesix.site/2019/07/10/Python百度人脸识别SDK的使用/">
 
 
 
@@ -305,7 +305,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://smallsix.com/2019/07/10/Python百度人脸识别SDK的使用/">
+    <link itemprop="mainEntityOfPage" href="https://codesix.site/2019/07/10/Python百度人脸识别SDK的使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小六">
@@ -668,7 +668,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">1</span>
+                      
+                    
+                    <span class="site-state-item-count">2</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
